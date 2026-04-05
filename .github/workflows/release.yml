@@ -103,7 +103,7 @@ jobs:
           run: ${{ matrix.build }}
 
       - name: Upload binding artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: bindings-${{ matrix.target }}
           path: xlsx-renderer.*.node
@@ -134,7 +134,7 @@ jobs:
         run: npm ci
 
       - name: Download binding artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           path: artifacts
 

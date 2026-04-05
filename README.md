@@ -167,6 +167,18 @@ type XlsxRow = {
 };
 ```
 
+`XlsxSheet` fields:
+
+- `sheetName`: Excel worksheet name.
+- `headerRowIndex`: zero-based row index used for the header row. Defaults to `0`.
+- `headerRowHeight`: custom height for the header row. Defaults to `34`.
+- `freezeHeaderRow`: when `true`, freezes the pane directly below the header row. Defaults to `true`.
+- `autoFilter`: when `true`, applies an Excel autofilter across the header row and populated data range. Defaults to `true`.
+- `columns`: ordered column definitions used for headers, widths, and row value lookup.
+- `rows`: row payloads written below the header row.
+- `mergeRangeList`: merged cell ranges written before row data.
+- `conditionalFormatList`: explicit formula-based conditional formatting ranges applied to the sheet.
+
 ### Cell values
 
 Primitive values are written directly:
@@ -255,6 +267,67 @@ type XlsxConditionalFormat = {
   style: string;
 };
 ```
+
+### Formula examples
+
+For `conditionalFormatList[].formula`, provide a valid Excel formula relative to the
+top-left cell of the formatted range.
+
+Examples:
+
+```ts
+conditionalFormatList: [
+  {
+    startRow: 1,
+    startCol: 2,
+    endRow: 100,
+    endCol: 2,
+    formula: '=C2="Overdue"',
+    style: 'danger',
+  },
+  {
+    startRow: 1,
+    startCol: 2,
+    endRow: 100,
+    endCol: 2,
+    formula: '=SEARCH("ready",C2)',
+    style: 'success',
+  },
+  {
+    startRow: 1,
+    startCol: 3,
+    endRow: 100,
+    endCol: 3,
+    formula: '=TODAY()>D2',
+    style: 'danger',
+  },
+];
+```
+
+For cell formulas in `rows`, use `type: 'formula'`:
+
+```ts
+rows: [
+  {
+    values: {
+      subtotal: 120,
+      tax: 24,
+      total: {
+        type: 'formula',
+        formula: '=A2+B2',
+      },
+    },
+  },
+];
+```
+
+Other valid formula examples:
+
+- `=SUM(B2:D2)`
+- `=IF(C2>0,"OK","KO")`
+- `=ROUND(B2*1.2,2)`
+- `=AND(C2>=0,C2<100)`
+- `=ISBLANK(C2)`
 
 ## Memory modes
 
