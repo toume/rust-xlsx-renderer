@@ -1,5 +1,7 @@
 # rust-xlsx-renderer
 
+[![CI](https://github.com/toume/rust-xlsx-renderer/actions/workflows/ci.yml/badge.svg)](https://github.com/toume/rust-xlsx-renderer/actions/workflows/ci.yml)
+
 `rust-xlsx-renderer` is a native Node.js package for generating `.xlsx` files with
 [`rust_xlsxwriter`](https://docs.rs/rust_xlsxwriter/latest/rust_xlsxwriter/) and
 [`napi-rs`](https://napi.rs/).
