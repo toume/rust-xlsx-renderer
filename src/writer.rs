@@ -375,7 +375,7 @@ mod tests {
         path
     }
 
-    fn read_zip_entry(path: &PathBuf, entry: &str) -> String {
+    fn read_zip_entry(path: &std::path::Path, entry: &str) -> String {
         let output = Command::new("unzip")
             .args(["-p", path.to_str().unwrap(), entry])
             .output()

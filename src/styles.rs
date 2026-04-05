@@ -7,7 +7,7 @@ pub fn resolve_header_format(column: &ColumnPayload, theme: &ThemePayload) -> Fo
         .header_style
         .as_deref()
         .and_then(|style| style_by_name(style, theme));
-    custom.unwrap_or_else(|| style_by_name("header", theme).unwrap_or_else(Format::new))
+    custom.unwrap_or_else(|| style_by_name("header", theme).unwrap_or_default())
 }
 
 pub fn resolve_format(
@@ -18,7 +18,7 @@ pub fn resolve_format(
     let mut format = base_style
         .and_then(|style| style_by_name(style, theme))
         .or_else(|| style_by_name("cell", theme))
-        .unwrap_or_else(Format::new);
+        .unwrap_or_default();
 
     for style_name in style_list {
         if let Some(style_format) = style_by_name(style_name, theme) {
