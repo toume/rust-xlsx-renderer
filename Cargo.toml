@@ -1,0 +1,26 @@
+[package]
+name = "xlsx-renderer"
+version = "0.1.0"
+edition = "2021"
+description = "Native XLSX renderer for Node.js based on rust_xlsxwriter and napi-rs"
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/toume/rust-xlsx-renderer"
+homepage = "https://github.com/toume/rust-xlsx-renderer"
+keywords = ["xlsx", "excel", "nodejs", "napi"]
+categories = ["api-bindings"]
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "2", default-features = false, features = ["async"] }
+napi-derive = "2"
+rust_xlsxwriter = { version = "0.94", features = ["constant_memory", "ryu"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tempfile = "3"
+
+[build-dependencies]
+napi-build = "2"

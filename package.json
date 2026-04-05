@@ -1,0 +1,81 @@
+{
+  "name": "rust-xlsx-renderer",
+  "version": "0.1.0",
+  "description": "Native XLSX renderer for Node.js based on rust_xlsxwriter and napi-rs",
+  "license": "Apache-2.0",
+  "author": "toume",
+  "homepage": "https://github.com/toume/rust-xlsx-renderer#readme",
+  "bugs": {
+    "url": "https://github.com/toume/rust-xlsx-renderer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toume/rust-xlsx-renderer.git"
+  },
+  "main": "wrapper.js",
+  "types": "wrapper.d.ts",
+  "exports": {
+    ".": {
+      "types": "./wrapper.d.ts",
+      "require": "./wrapper.js",
+      "default": "./wrapper.js"
+    }
+  },
+  "files": [
+    "build.rs",
+    "index.js",
+    "wrapper.js",
+    "wrapper.d.ts",
+    "index.d.ts",
+    "Cargo.toml",
+    "src",
+    "*.node",
+    "npm"
+  ],
+  "keywords": [
+    "xlsx",
+    "excel",
+    "rust",
+    "napi",
+    "node",
+    "spreadsheet"
+  ],
+  "engines": {
+    "node": ">=20.15"
+  },
+  "napi": {
+    "name": "xlsx-renderer",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "x86_64-unknown-linux-musl",
+        "aarch64-unknown-linux-musl"
+      ]
+    }
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "artifacts:clean": "rimraf target *.node",
+    "format:check": "cargo fmt --check",
+    "lint:rust": "cargo clippy --all-targets -- -D warnings",
+    "prepublishOnly": "napi prepublish -t npm --tagstyle npm",
+    "pack:dry-run": "npm pack --dry-run",
+    "test": "npm run test:rust && npm run test:ts",
+    "test:rust": "cargo test",
+    "test:ts": "jest --config ./jest.config.js --runInBand",
+    "test:ci": "npm run format:check && npm run lint:rust && npm run test",
+    "version:napi": "napi version"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "rimraf": "^6.1.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.5.3"
+  }
+}

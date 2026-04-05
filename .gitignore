@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build artifacts
+target/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Native binaries and packaged outputs
+*.node
+*.tgz
+
+# N-API release folders
+npm/
+artifacts/
+
+# Environment and local overrides
+.env
+.env.*
+!.env.example
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Rust tooling
+.cargo/
+
+# Temporary files
+tmp/
+temp/
